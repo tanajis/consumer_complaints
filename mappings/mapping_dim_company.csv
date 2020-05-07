@@ -1,0 +1,4 @@
+src_name,src_type,tgt_name,tgt_type
+Company,string,company_name,string
+State,string,state_code,string
+Zip code,string,zip_code,int

@@ -1,0 +1,1 @@
+zip   dependencies.zip dependencies/*

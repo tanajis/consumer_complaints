@@ -1,0 +1,3 @@
+src_name,src_type,tgt_name,tgt_type
+Product,string,product,string
+Sub-product,string,sub_product,string

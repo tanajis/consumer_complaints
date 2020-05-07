@@ -1,0 +1,9 @@
+{
+   "postgres_datamart":{
+"url":"jdbc:postgresql://localhost/consumer_complaints",
+"dbtable":"dim_company",
+"user":"postgres",
+"password":"postgres",
+"driver":"org.postgresql.Driver"
+}
+}

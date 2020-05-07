@@ -1,0 +1,97 @@
+https://catalog.data.gov/dataset/consumer-complaint-database#topic=consumer_navigation
+
+
+https://catalog.data.gov/dataset/consumer-complaint-database#topic=consumer_navigation
+ columns:
+
+
+Date received,Product,Sub-product,Issue,Sub-issue,
+Consumer complaint narrative,Company public response,
+Company,State,ZIP code,Tags,Consumer consent provided?,
+Submitted via,Date sent to company,Company response to consumer,
+Timely response?,Consumer disputed?,Complaint ID
+
+
+#--------------------------------------------------------------------
+
+
+
+dim_company
+comp_id,company_name,State,zip_code
+
+
+dim_product
+prod_id,product,sub_product
+
+
+fact 
+
+fact_compaints
+prod_id,comp_id,issue,sub_issue,compaint_narr,company_resp
+
+
+
+https://spark.apache.org/docs/latest/sql-data-sources-jdbc.html
+
+#--------------------------------
+
+Data Quality Check 
+
+1.Not NULL given list of columns
+2.Data Types
+3.
+
+
+#-------------------------
+
+
+ETL pipeline
+
+
+1. Landing:
+src : postgresql 
+tgt :hadoop fokder as text file
+
+2. DQ layer:
+
+src : hdfs file
+tgt : hive table good_data,bad_data, parquet format
+
+3. Cleansing Layer:
+Data cleaning is the process of preparing data for analysis by removing or modifying data that is incorrect, incomplete, irrelevant, duplicated, or improperly formatted.
+    -remove  duplicate or irrelevant observations.
+    -remove unwanted columns
+    -Fix Structural Errors(inconsistent capitalization)
+        Ex.column 'composition' is the same as 'Composition'
+    -replace missing values in columns.
+    -remove spaces
+    -date format change
+4. delta_detection_layer
+
+    src : good_data hive table
+    tgt : fact table , dim table
+
+Summary Layer(Aggregations):
+
+
+
+
+
+spark-submit etl/dqlayer.py --py-files dependencies.zip
+
+http://10.0.2.15:4041
+
+
+#HDFS : http://localhost:50070/
+#RM UI: http://localhost:8088/
+
+
+
+hdfs dfs -mkdir /consumer_complaints
+
+hdfs dfs -mkdir /consumer_complaints/landing
+
+hdfs dfs -mkdir /consumer_complaints/data_quality
+
+Copy data to landing
+hdfs dfs -copyFromLocal /home/tms/projects/code_consumer_complaints/data/complaints.csv  /consumer_complaints/landing

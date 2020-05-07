@@ -1,0 +1,13 @@
+{
+    "data_quality":
+    {
+        "src_path":"hdfs://localhost:54310/consumer_complaints/landing/complaints.csv",
+        "tgt_path":"hdfs://localhost:54310/consumer_complaints/data_quality"
+    },
+    "data_cleansing":
+    {
+        "src_path":"hdfs://localhost:54310/consumer_complaints/data_quality/good_data.csv",
+        "tgt_path":"hdfs://localhost:54310/consumer_complaints/data_cleansing"
+    }
+
+}

@@ -1,0 +1,7 @@
+src_name,src_type,tgt_name,tgt_type
+State,string,prod_id,int
+Complaint ID,string,comp_id,int
+Issue,string,issue,string
+Sub-issue,string,sub_issue,string
+Consumer complaint narrative,string,compaint_narr,string
+Company response to consumer,string,company_resp,string
